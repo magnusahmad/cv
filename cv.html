@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Magnus Ahmad — Curriculum Vitae</title>
+<meta name="description" content="Magnus Ahmad — product leader, operator and founder. Curriculum vitae.">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="./magnus-ahmad.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+  /* ==========================================================
+     Print-first CV. Monochrome, no backgrounds, A4.
+     ========================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:   #111214;
+    --body:  #2b2d31;
+    --muted: #5c5f66;
+    --rule:  #c9ccd1;
+    --sans:  "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --serif: "Instrument Serif", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    color: var(--body);
+    font-family: var(--sans);
+    font-size: 10pt;
+    line-height: 1.38;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* the sheet-on-a-desk look is for reading on screen only; in print the
+     page box comes from @page, so none of this may leak into it */
+  @media screen {
+    body { background: #f2f2f0; padding: 24px 16px 56px; }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 15mm 16mm 14mm;
+      background: #fff;
+      box-shadow: 0 2px 24px rgba(0, 0, 0, 0.14);
+    }
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ---------- masthead ---------- */
+  .masthead { padding-bottom: 9pt; border-bottom: 1.4pt solid var(--ink); }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: 26pt;
+    font-weight: 400;
+    letter-spacing: 0.005em;
+    line-height: 1;
+    color: var(--ink);
+  }
+
+  .title {
+    margin-top: 4pt;
+    font-size: 11.2pt;
+    font-weight: 500;
+    letter-spacing: 0.005em;
+    color: var(--ink);
+  }
+
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3pt 9pt;
+    margin-top: 6pt;
+    font-size: 9pt;
+    color: var(--muted);
+  }
+
+  .contact span { display: inline-flex; align-items: center; gap: 9pt; }
+  .contact span::after { content: "·"; color: var(--rule); }
+  .contact span:last-child::after { content: none; }
+  .contact a { border-bottom: 0.5pt solid var(--rule); }
+
+  /* ---------- summary ---------- */
+  .summary {
+    margin-top: 8pt;
+    font-size: 10pt;
+    line-height: 1.45;
+    color: var(--body);
+    max-width: 62em;
+  }
+
+  .summary b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- sections ---------- */
+  section { margin-top: 12pt; }
+
+  h2 {
+    font-size: 8.6pt;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    padding-bottom: 3pt;
+    border-bottom: 0.75pt solid var(--ink);
+    margin-bottom: 7pt;
+  }
+
+  .entry { margin-bottom: 8.5pt; break-inside: avoid; page-break-inside: avoid; }
+  .entry:last-child { margin-bottom: 0; }
+
+  .entry-head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 12pt;
+  }
+
+  .org { font-size: 11pt; font-weight: 600; letter-spacing: -0.005em; color: var(--ink); }
+  .when { font-size: 9pt; font-weight: 500; color: var(--ink); white-space: nowrap; }
+
+  .role-line {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 12pt;
+    margin-top: 1pt;
+  }
+
+  .role { font-size: 9.6pt; color: var(--body); }
+  .where { font-size: 9pt; color: var(--muted); white-space: nowrap; }
+
+  .stints {
+    margin-top: 2.5pt;
+    font-size: 9.2pt;
+    color: var(--muted);
+  }
+
+  .stints div { display: grid; grid-template-columns: 1fr auto; gap: 12pt; }
+
+  ul.points { margin: 4pt 0 0; padding: 0; list-style: none; }
+
+  ul.points li {
+    position: relative;
+    padding-left: 11pt;
+    margin-bottom: 1.8pt;
+  }
+
+  ul.points li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.56em;
+    width: 4.5pt;
+    height: 0.75pt;
+    background: var(--ink);
+  }
+
+  ul.points b { color: var(--ink); font-weight: 600; }
+
+  .metrics {
+    margin-top: 3.5pt;
+    padding-top: 3pt;
+    border-top: 0.5pt dotted var(--rule);
+    font-size: 9pt;
+    color: var(--muted);
+  }
+
+  .metrics b { color: var(--ink); font-weight: 600; }
+  .metrics i { font-style: normal; color: var(--rule); padding: 0 4pt; }
+
+  /* ---------- links block ---------- */
+  .links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 5pt 18pt; }
+
+  .links div { display: grid; grid-template-columns: auto 1fr; gap: 7pt; align-items: baseline; }
+  .links strong { font-size: 9.8pt; font-weight: 600; color: var(--ink); white-space: nowrap; }
+  .links span { font-size: 9.2pt; color: var(--muted); }
+  .links a { border-bottom: 0.5pt solid var(--rule); }
+
+  .foot {
+    margin-top: 12pt;
+    padding-top: 5pt;
+    border-top: 0.5pt solid var(--rule);
+    font-size: 8.4pt;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    gap: 12pt;
+  }
+
+  /* ---------- on-screen affordance, never printed ---------- */
+  .bar {
+    width: 210mm;
+    max-width: 100%;
+    margin: 0 auto 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    color: #55585e;
+  }
+
+  .bar a {
+    padding: 6px 13px;
+    border: 1px solid #c2c5ca;
+    border-radius: 999px;
+    background: #fff;
+    font-weight: 500;
+  }
+
+  .bar a:hover { background: #111214; border-color: #111214; color: #fff; }
+
+  @media print {
+    @page { size: A4; margin: 13mm 14mm; }
+    body { font-size: 9.6pt; }
+    .bar { display: none; }
+    h2 { break-after: avoid; page-break-after: avoid; }
+    .contact a, .links a { border-bottom: 0; }
+  }
+
+  @media screen and (max-width: 800px) {
+    body { padding: 12px 0 32px; }
+    .page, .bar { width: auto; max-width: 100%; padding-left: 18px; padding-right: 18px; }
+    .links { grid-template-columns: 1fr; }
+    .entry-head, .role-line { grid-template-columns: 1fr; gap: 0; }
+    .when, .where { white-space: normal; }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="bar">
+  <a href="./">← Interactive version</a>
+  <a href="./magnus-ahmad-cv.pdf" download>Download PDF ↓</a>
+</div>
+
+<main class="page">
+
+  <header class="masthead">
+    <h1>Magnus Ahmad</h1>
+    <p class="title">Full-stack product leader</p>
+    <p class="contact">
+      <span><a href="mailto:magnus.ahmad@gmail.com">magnus.ahmad@gmail.com</a></span>
+      <span><a href="https://www.linkedin.com/in/magnus-ahmad/">linkedin.com/in/magnus-ahmad</a></span>
+      <span><a href="https://github.com/magnusahmad">github.com/magnusahmad</a></span>
+      <span>Hong Kong · open to relocation</span>
+    </p>
+  </header>
+
+  <p class="summary">
+    Repeat founder, full-stack product leader and operator with nine years across
+    <b>agentic AI systems</b>, <b>ML supply chain at Amazon</b>, <b>verifiable compute</b> and
+    <b>privacy-preserving identity</b>. Zero-to-one product strategy, go-to-market and
+    technically ambitious products, built across Manila, Oxford, London, Berlin and Hong Kong.
+  </p>
+
+  <!-- ============================ EXPERIENCE ============================ -->
+  <section>
+    <h2>Experience</h2>
+
+    <div class="entry">
+      <div class="entry-head"><span class="org">Memento</span><span class="when">Jun 2026 — Present</span></div>
+      <div class="role-line"><span class="role">Founder · AI-powered adaptive learning platform</span><span class="where">Hong Kong</span></div>
+      <ul class="points">
+        <li>Built a science-backed AI learning platform that <b>maps mastery across a personal knowledge graph</b> and turns errors into adaptive practice.</li>
+        <li>A browser companion captures texts from any page, branches into contextual chat, and builds a durable spaced-repetition library.</li>
+      </ul>
+      <p class="metrics"><b>28</b> skill dimensions in the mastery graph<i>·</i><b>Live</b> — in beta with educators</p>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head"><span class="org">Intern</span><span class="when">May 2026 — Present</span></div>
+      <div class="role-line"><span class="role">Creator · Open-source AI teammate</span><span class="where">Hong Kong</span></div>
+      <ul class="points">
+        <li>A <b>self-onboarding teammate</b> that researches a business, connects to its tools and builds a living company knowledge base.</li>
+        <li>One terminal flow discovers only the services a company actually uses, authenticates securely, then hands off to Telegram.</li>
+        <li>The specialised profile benchmarked <b>4× faster</b> than vanilla Hermes with <b>zero approval interruptions</b> versus 37.</li>
+      </ul>
+      <p class="metrics"><b>~5 min</b> from install to a context-aware teammate<i>·</i><b>4×</b> faster task completion</p>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head"><span class="org">Agent Harbor</span><span class="when">Jul 2025 — Jun 2026</span></div>
+      <div class="role-line"><span class="role">CEO &amp; Co-founder · Reliable long-horizon autonomous work</span><span class="where">Hong Kong</span></div>
+      <ul class="points">
+        <li>Co-founded after a strategic pivot from Blocksense — a coding-agent platform for <b>reliable, long-horizon autonomous work</b>.</li>
+        <li>Shipped a <b>copy-on-write filesystem 10× faster than git worktrees</b>, with granular sandboxing, instant rollback and anti-halting recovery.</li>
+        <li>Accepted into the <b>Zerobase accelerator</b>; reached the <b>TOKEN2049 Nexus finals</b> from a field of 500+ teams.</li>
+      </ul>
+      <p class="metrics"><b>10×</b> faster than git worktrees<i>·</i><b>4</b> agent runtimes orchestrated locally</p>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head"><span class="org">Blocksense</span><span class="when">Jun 2024 — Jul 2025</span></div>
+      <div class="role-line"><span class="role">Founding Team · Product &amp; Go-to-market</span><span class="where">Berlin</span></div>
+      <ul class="points">
+        <li>Set <b>zero-to-one product strategy</b> for a distributed network for verifiable data and computation, backed by <b>a16z crypto</b>.</li>
+        <li>Onboarded the company's <b>first customers and partners</b> off a self-built pipeline of 100+ projects.</li>
+        <li>Represented the company at TOKEN2049, Consensus Hong Kong, ETHDenver and Devcon.</li>
+      </ul>
+      <p class="metrics"><b>70+</b> partner networks<i>·</i><b>80K</b> community<i>·</i><b>$3M</b> grants won</p>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head"><span class="org">Affinidi</span><span class="when">Nov 2021 — Jun 2024</span></div>
+      <div class="role-line"><span class="role">Special Projects Lead · Privacy-preserving identity</span><span class="where">Berlin</span></div>
+      <ul class="points">
+        <li>Led end-to-end delivery of <b>privacy-preserving identity MVPs used by more than a million people</b> worldwide.</li>
+        <li>Owned greenfield bets spanning billing, analytics, Compliance-as-a-Service, and an edge-based private LLM assistant.</li>
+        <li>Ran three experimental SWAT teams through customer discovery and go-to-market — thousands of qualified visits and 100+ letters of intent.</li>
+      </ul>
+      <p class="metrics"><b>1M+</b> people reached<i>·</i><b>100+</b> letters of intent<i>·</i><b>3</b> SWAT teams run end to end</p>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head"><span class="org">Amazon</span><span class="when">Sep 2017 — Sep 2021</span></div>
+      <div class="role-line"><span class="role">Product Manager — Retail, then Supply Chain</span><span class="where">London</span></div>
+      <div class="stints">
+        <div><span>Product Manager · Supply Chain</span><span>Jul 2020 — Sep 2021</span></div>
+        <div><span>Product Manager · Retail</span><span>Sep 2017 — Jul 2020</span></div>
+      </div>
+      <ul class="points">
+        <li>Took a B2B supplier catalogue service <b>from idea to MVP</b> inside a Pan-European optimisation programme generating €30M+ annually.</li>
+        <li>Led a supply-chain algorithm upgrade that recovered roughly <b>3M suppressed products</b> and unlocked <b>€20M+ in annualised revenue</b>.</li>
+        <li>Ran EU-wide A/B tests over eight-digit weekly shipment volumes — <b>apparel delivery 30% faster</b> and warehouse coverage doubled in five markets.</li>
+      </ul>
+      <p class="metrics"><b>€50M+</b> annualised impact<i>·</i><b>80K</b> delayed parcels prioritised before Christmas<i>·</i><b>1,000+</b> hours a year removed by automation</p>
+    </div>
+
+  </section>
+
+  <!-- ============================ EDUCATION ============================ -->
+  <section>
+    <h2>Education</h2>
+
+    <div class="entry">
+      <div class="entry-head"><span class="org">London Business School</span><span class="when">Sep 2016 — Jul 2017</span></div>
+      <div class="role-line"><span class="role">Masters in Management</span><span class="where">London</span></div>
+      <ul class="points">
+        <li>Consulted on strategic growth for <b>Change Please</b>, a UK social enterprise putting people out of homelessness through coffee.</li>
+        <li>Nominated for the <b>Outstanding Teamwork Award</b> across the cohort.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head"><span class="org">University of Oxford</span><span class="when">Oct 2011 — Jun 2015</span></div>
+      <div class="role-line"><span class="role">BA Archaeology &amp; Anthropology (2:1) · MSc Cognitive &amp; Evolutionary Anthropology</span><span class="where">Oxford</span></div>
+      <ul class="points">
+        <li><b>First-class dissertation</b> — ethnographic research on migrant identity and how technology is used abroad and at home.</li>
+        <li>MSc thesis: a quantitative study of social status and financial risk aversion, built on research design and statistical analysis.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head"><span class="org">International School of Manila</span><span class="when">Aug 2009 — Jun 2011</span></div>
+      <div class="role-line"><span class="role">International Baccalaureate</span><span class="where">Manila</span></div>
+    </div>
+  </section>
+
+  <!-- ============================ SELECTED WORK ============================ -->
+  <section>
+    <h2>Selected work</h2>
+    <div class="links">
+      <div><strong>Memento</strong><span>Adaptive learning · <a href="https://mementoapp.xyz/">mementoapp.xyz</a></span></div>
+      <div><strong>Intern</strong><span>Open-source AI teammate · <a href="https://github.com/magnusahmad/intern/tree/main">github.com/magnusahmad/intern</a></span></div>
+      <div><strong>Agent Harbor</strong><span>Autonomous coding · <a href="https://get.agent-harbor.com/">get.agent-harbor.com</a></span></div>
+      <div><strong>Blocksense</strong><span>Verifiable compute · <a href="https://www.blocksense.network/">blocksense.network</a></span></div>
+    </div>
+  </section>
+
+  <p class="foot">
+    <span>Interactive version: magnusahmad.github.io/cv</span>
+    <span>References available on request</span>
+  </p>
+
+</main>
+</body>
+</html>

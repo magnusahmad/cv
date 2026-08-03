@@ -14,6 +14,9 @@ No build step, no framework, no runtime dependencies.
 
 ```
 index.html            all content + the inline city line-art SVGs
+cv.html               print-first traditional CV (source of the PDF)
+magnus-ahmad-cv.pdf   two-page A4 CV, generated from cv.html
+tools/make-pdf.mjs    regenerates the PDF via the Chrome DevTools Protocol
 assets/site.css       the whole design system
 assets/site.js        scroll chronology, rail, view switching
 brands/               logos used in the chapter chips and work tiles
@@ -45,6 +48,26 @@ newest-first; the timeline runs oldest-first.
 
 The overview rows and the header/hero buttons jump into the timeline via
 `data-goto="<panel index>"`.
+
+## Regenerating the PDF
+
+```bash
+python3 -m http.server 8899                        # serve the folder
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+  --headless --disable-gpu --remote-debugging-port=9222 about:blank &
+node tools/make-pdf.mjs http://localhost:8899/cv.html magnus-ahmad-cv.pdf
+```
+
+Two gotchas that cost real time, both worth remembering if `cv.html` is edited:
+
+- Chrome's `--print-to-pdf` **CLI ignores `@page { margin }`** and applies its own
+  large defaults. `Page.printToPDF` over CDP takes the margins as parameters,
+  which is why the generator drives the protocol rather than the flag.
+- Chrome lays out the printed page at the **paper width in CSS px** (~680px for
+  A4 with these margins), so a bare `@media (max-width: 800px)` block *also
+  matches while printing*. That silently stacked every entry header onto two
+  lines and pushed the CV to three pages. Responsive rules in `cv.html` are
+  scoped `@media screen and (max-width: …)` for exactly this reason.
 
 ## Notes
 
