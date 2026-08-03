@@ -146,14 +146,6 @@ body {
 }
 .skyline .glint { fill: currentColor; opacity: 0.62; }
 
-.skyline .fore { fill: currentColor; opacity: 0.32; }
-.skyline .fore-line {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.1;
-  opacity: 0.52;
-  vector-effect: non-scaling-stroke;
-}
 
 .bg-fade {
   position: absolute;
