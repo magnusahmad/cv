@@ -16,7 +16,6 @@
   var readYear   = document.querySelector(".readout .yr");
   var countEl    = document.querySelector(".count");
   var placeEl    = document.querySelector(".place .txt");
-  var glow       = document.querySelector(".bg-glow");
   var skylines   = Array.prototype.slice.call(document.querySelectorAll(".skyline"));
   var arrowPrev  = document.querySelector(".arrow.prev");
   var arrowNext  = document.querySelector(".arrow.next");
@@ -40,8 +39,7 @@
       place: el.dataset.place || "",
       label: el.dataset.label || "",
       geo: el.dataset.geo || "",
-      year: el.dataset.year || "",
-      glow: el.dataset.glow || "50% 22%"
+      year: el.dataset.year || ""
     };
   });
 
@@ -89,12 +87,6 @@
     var rgb = mixRGB(model[lo].accent, model[hi].accent, t);
     root.style.setProperty("--accent-rgb", rgb.join(", "));
     root.style.setProperty("--accent", "rgb(" + rgb.join(",") + ")");
-
-    /* ambient glow drift */
-    var g1 = model[lo].glow.split(" ");
-    var g2 = model[hi].glow.split(" ");
-    glow.style.setProperty("--glow-x", lerp(parseFloat(g1[0]), parseFloat(g2[0]), t) + "%");
-    glow.style.setProperty("--glow-y", lerp(parseFloat(g1[1]), parseFloat(g2[1]), t) + "%");
 
     /* date readout — real interpolated time */
     var d = new Date(lerp(model[lo].time, model[hi].time, t));
