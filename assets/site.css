@@ -1590,9 +1590,31 @@ a.tile-bar:hover .tile-open { color: var(--accent); }
 /* work grid */
 .ov-work {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));
   gap: 16px;
 }
+
+/* the demo runs full-bleed across the top of the card, cropped to a fixed
+   band so the cards stay the same compact height they were before */
+.work-media {
+  height: 142px;
+  margin: -18px -18px 4px;
+  border-bottom: 1px solid var(--line);
+  border-radius: 15px 15px 0 0;
+  overflow: hidden;
+  background: #05060a;
+}
+
+.work-media .tile-media {
+  height: 100%;
+  max-height: none;
+  aspect-ratio: auto;
+}
+
+.work-media video { height: 100%; object-position: center top; }
+
+/* the dashboard is scaled up so its crop stays legible at card width */
+.work-media.shot .tile-shot .app { font-size: 4cqw; padding: 1.1em 1.4em; }
 
 .work-card {
   display: flex;
@@ -1753,6 +1775,7 @@ a.tile-bar:hover .tile-open { color: var(--accent); }
   .ov-top { grid-template-columns: minmax(0, 1fr); align-items: start; }
   .ov-face { order: -1; }
 
+  .ov-work { grid-template-columns: minmax(0, 1fr); }
   .ov-row { grid-template-columns: minmax(0, 1fr) auto; gap: 10px; padding: 12px 10px; }
   .ov-yr { grid-column: 1 / -1; }
   .ov-go { display: none; }
