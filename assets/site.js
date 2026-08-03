@@ -45,6 +45,7 @@
 
   var last = model.length - 1;
   var active = -1;
+  var activePos = -1;
   var activeCity = null;
 
   /* ---------- rail nodes ---------- */
@@ -75,13 +76,26 @@
 
   function pad(n) { return n < 10 ? "0" + n : "" + n; }
 
+  /* Model indices in rendered order. Desktop follows the DOM chronology;
+     mobile uses CSS order to put current work before education. */
+  function layoutOrder() {
+    if (!narrow()) return model.map(function (m) { return m.i; });
+    return panels.map(function (p, i) {
+      return { i: i, top: p.getBoundingClientRect().top };
+    }).sort(function (a, b) { return a.top - b.top; })
+      .map(function (box) { return box.i; });
+  }
+
   /* ---------- the one render function ---------- */
   function render(pos) {
     pos = clamp(pos, 0, last);
 
-    var lo = Math.min(Math.floor(pos), last);
-    var hi = Math.min(lo + 1, last);
-    var t = pos - lo;
+    var order = layoutOrder();
+    var loPos = Math.min(Math.floor(pos), last);
+    var hiPos = Math.min(loPos + 1, last);
+    var lo = order[loPos];
+    var hi = order[hiPos];
+    var t = pos - loPos;
 
     /* accent — glides between chapters */
     var rgb = mixRGB(model[lo].accent, model[hi].accent, t);
@@ -97,11 +111,16 @@
     var pct = last ? (pos / last) * 100 : 0;
     axisFill.style.width = pct + "%";
     axisHead.style.left = pct + "%";
+    nodes.forEach(function (n, i) {
+      n.style.left = (last ? (order.indexOf(i) / last) * 100 : 0) + "%";
+    });
 
     /* active chapter */
-    var next = clamp(Math.round(pos), 0, last);
-    if (next !== active) {
+    var nextPos = clamp(Math.round(pos), 0, last);
+    var next = order[nextPos];
+    if (next !== active || nextPos !== activePos) {
       active = next;
+      activePos = nextPos;
       var m = model[active];
 
       panels.forEach(function (p, i) { p.classList.toggle("live", i === active); });
@@ -109,7 +128,7 @@
         n.setAttribute("aria-current", i === active ? "true" : "false");
       });
 
-      countEl.innerHTML = "<b>" + pad(active + 1) + "</b> / " + pad(model.length);
+      countEl.innerHTML = "<b>" + pad(activePos + 1) + "</b> / " + pad(model.length);
       if (placeEl) placeEl.textContent = m.place;
       if (geo) geo.innerHTML = m.geo ? "<b>" + m.geo.split("|")[0] + "</b> " + m.geo.split("|")[1] : "";
 
@@ -118,8 +137,8 @@
         skylines.forEach(function (s) { s.classList.toggle("on", s.dataset.city === m.city); });
       }
 
-      if (arrowPrev) arrowPrev.disabled = active === 0;
-      if (arrowNext) arrowNext.disabled = active === last;
+      if (arrowPrev) arrowPrev.disabled = activePos === 0;
+      if (arrowNext) arrowNext.disabled = activePos === last;
     }
   }
 
@@ -127,6 +146,7 @@
   var ticking = false;
 
   function schedule() {
+    if (view !== "timeline") return;
     /* rAF never fires in a background tab — stay in sync without it */
     if (document.hidden) { render(measure()); return; }
     if (ticking) return;
@@ -144,12 +164,18 @@
 
   function measure() {
     if (narrow()) {
-      /* vertical flow: where the viewport's reading line sits in the stack */
+      /* Vertical flow. The panels are reordered newest-first on mobile, so
+         return progress through their rendered order rather than DOM order. */
       var mid = window.innerHeight * 0.45;
-      for (var i = 0; i < panels.length; i++) {
-        var r = panels[i].getBoundingClientRect();
-        if (mid < r.top) return i;
-        if (mid < r.bottom) return i + clamp((mid - r.top) / (r.height || 1), 0, 0.999);
+      var boxes = panels.map(function (p) {
+        var r = p.getBoundingClientRect();
+        return { top: r.top, bottom: r.bottom, h: r.height || 1 };
+      }).sort(function (a, b) { return a.top - b.top; });
+
+      for (var k = 0; k < boxes.length; k++) {
+        var box = boxes[k];
+        if (mid < box.top) return Math.max(k - 1, 0);
+        if (mid < box.bottom) return k + clamp((mid - box.top) / box.h, 0, 0.999);
       }
       return last;
     }
@@ -243,6 +269,12 @@
     if (switching) afterLayout(jump); else jump();
   }
 
+  function goAdjacent(delta) {
+    var order = layoutOrder();
+    var pos = Math.max(order.indexOf(active), 0);
+    goTo(order[clamp(pos + delta, 0, last)]);
+  }
+
   track.addEventListener("scroll", schedule, { passive: true });
   ["pointerdown", "touchstart"].forEach(function (evt) {
     track.addEventListener(evt, stopAnim, { passive: true });
@@ -269,13 +301,13 @@
     var tag = (e.target.tagName || "").toLowerCase();
     if (tag === "input" || tag === "textarea") return;
     var map = { ArrowRight: 1, ArrowLeft: -1, PageDown: 1, PageUp: -1 };
-    if (e.key in map) { e.preventDefault(); goTo(active + map[e.key]); }
+    if (e.key in map) { e.preventDefault(); goAdjacent(map[e.key]); }
     else if (e.key === "Home") { e.preventDefault(); goTo(0); }
     else if (e.key === "End") { e.preventDefault(); goTo(last); }
   });
 
-  if (arrowPrev) arrowPrev.addEventListener("click", function () { goTo(active - 1); });
-  if (arrowNext) arrowNext.addEventListener("click", function () { goTo(active + 1); });
+  if (arrowPrev) arrowPrev.addEventListener("click", function () { goAdjacent(-1); });
+  if (arrowNext) arrowNext.addEventListener("click", function () { goAdjacent(1); });
 
   /* ---------- views ---------- */
   var view = "overview";
@@ -295,8 +327,11 @@
     });
     /* the track was display:none — restore the chapter we left off on
        (a goTo that triggered this switch queues its own jump right after) */
-    if (name === "timeline" && !narrow()) {
-      afterLayout(function () { track.scrollLeft = centreTarget(active); });
+    if (name === "timeline") {
+      afterLayout(function () {
+        if (!narrow()) track.scrollLeft = centreTarget(active);
+        schedule();
+      });
     }
     return true;
   }
