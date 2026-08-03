@@ -1,0 +1,11 @@
+.DS_Store
+
+# 7.6 MB HEVC source; the web copy lives in media/intern-demo.mp4 (193 KB)
+intern-demo.mov
+
+# superseded by the inline SVG city art and assets/site.css
+landmarks/
+assets/index-CReap02t.css
+
+# 892 KB original; brands/memento-mark.png is the cropped version in use
+brands/memento.png
