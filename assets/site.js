@@ -34,6 +34,7 @@
       el: el,
       i: i,
       time: Date.parse(el.dataset.date + "T00:00:00Z"),
+      bookend: el.classList.contains("panel-hero") || el.classList.contains("panel-contact"),
       accent: accent,
       city: el.dataset.city || "",
       place: el.dataset.place || "",
@@ -86,11 +87,28 @@
       .map(function (box) { return box.i; });
   }
 
+  /* Dates in rendered order. The hero and contact cards are bookends — they
+     borrow the date of the nearest real chapter instead of their own, so the
+     readout never doubles back when the phone layout runs newest-first. */
+  function timeline(order) {
+    return order.map(function (idx, at) {
+      if (!model[idx].bookend) return model[idx].time;
+      for (var d = 1; d < order.length; d++) {
+        var ahead = order[at + d];
+        var behind = at - d >= 0 ? order[at - d] : undefined;
+        if (ahead !== undefined && !model[ahead].bookend) return model[ahead].time;
+        if (behind !== undefined && !model[behind].bookend) return model[behind].time;
+      }
+      return model[idx].time;
+    });
+  }
+
   /* ---------- the one render function ---------- */
   function render(pos) {
     pos = clamp(pos, 0, last);
 
     var order = layoutOrder();
+    var times = timeline(order);
     var loPos = Math.min(Math.floor(pos), last);
     var hiPos = Math.min(loPos + 1, last);
     var lo = order[loPos];
@@ -103,7 +121,7 @@
     root.style.setProperty("--accent", "rgb(" + rgb.join(",") + ")");
 
     /* date readout — real interpolated time */
-    var d = new Date(lerp(model[lo].time, model[hi].time, t));
+    var d = new Date(lerp(times[loPos], times[hiPos], t));
     readMonth.textContent = MONTHS[d.getUTCMonth()];
     readYear.textContent = d.getUTCFullYear();
 

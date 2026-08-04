@@ -1662,8 +1662,26 @@ a.tile-bar:hover .tile-open { color: var(--accent); }
     padding: 0 16px;
   }
 
-  .readout { min-width: 82px; }
-  .readout .yr { font-size: 19px; }
+  /* The axis leads and a compact date closes the rail on the right: present
+     without crowding the chapter it belongs to. */
+  .count   { order: 1; }
+  .axis    { order: 2; }
+  .readout { order: 3; }
+
+  .readout {
+    min-width: 0;
+    gap: 5px;
+    justify-content: flex-end;
+    padding-left: 12px;
+    border-left: 1px solid var(--line);
+  }
+
+  .readout .mo { font-size: 9px; letter-spacing: 0.14em; }
+  .readout .yr { font-size: 14px; letter-spacing: 0; }
+
+  /* Newest-first on a phone, so the axis runs the other way */
+  .axis-caps { flex-direction: row-reverse; }
+
   .node-label { display: none; }
   .keys { display: none; }
 
