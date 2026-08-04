@@ -378,6 +378,15 @@
   document.querySelectorAll("[data-goto]").forEach(function (el) {
     el.addEventListener("click", function (e) {
       e.preventDefault();
+      /* "next" is the chapter after this one as laid out, not as authored —
+         the phone reverses the order, so a fixed index would land elsewhere */
+      if (el.dataset.goto === "next") {
+        var own = el.closest(".panel");
+        var order = layoutOrder();
+        var at = own ? order.indexOf(panels.indexOf(own)) : -1;
+        goTo(order[clamp(at + 1, 0, last)]);
+        return;
+      }
       goTo(Number(el.dataset.goto));
     });
   });

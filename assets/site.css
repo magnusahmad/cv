@@ -615,6 +615,22 @@ a.chip:hover {
 .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 28px -14px rgba(var(--accent-rgb), 0.6); }
 .btn-primary svg { width: 14px; height: 14px; }
 
+/* Onward into the timeline — the arrow alone carries it */
+.btn-next {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 38px; height: 38px;
+  border-radius: 999px;
+  background: rgba(var(--accent-rgb), 0.92);
+  color: #14120e;
+  transition: transform 0.24s var(--ease), box-shadow 0.24s;
+}
+
+.btn-next:hover { transform: translateY(-1px); box-shadow: 0 10px 28px -14px rgba(var(--accent-rgb), 0.6); }
+.btn-next svg { width: 15px; height: 15px; }
+
 .btn-ghost, .btn-plain {
   display: inline-flex;
   align-items: center;
@@ -1603,7 +1619,7 @@ a.tile-bar:hover .tile-open { color: var(--accent); }
   .panel-hero .panel-inner { grid-template-columns: minmax(0, 1fr); }
   .hero-visual { grid-template-columns: 150px minmax(0, 1fr); align-items: center; }
   .portrait { max-height: 150px; max-width: 150px; }
-  .metrics { grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .metrics { grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ov-cols { grid-template-columns: minmax(0, 1fr); }
 }
 
@@ -1611,6 +1627,13 @@ a.tile-bar:hover .tile-open { color: var(--accent); }
   :root { --bar: 54px; --rail: 74px; }
 
   body { overflow: auto; }
+
+  /* The city art is sized off the viewport width, so a phone draws it about a
+     third of its desktop height — the sticky rail then covered most of what
+     was left and the bottom fade drowned the rest. Stand it on the rail and
+     pull the scrim back so the silhouette actually reads. */
+  .skylines { bottom: var(--rail); }
+  .bg-fade { height: 14vh; }
 
   .stage { height: auto; }
 
@@ -1684,6 +1707,9 @@ a.tile-bar:hover .tile-open { color: var(--accent); }
 
   .node-label { display: none; }
   .keys { display: none; }
+
+  /* a comfortable thumb target */
+  .btn-next { width: 44px; height: 44px; }
 
   .hero-visual { grid-template-columns: 110px minmax(0, 1fr); }
   .portrait { max-height: 110px; max-width: 110px; }
