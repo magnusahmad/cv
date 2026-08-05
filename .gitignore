@@ -3,6 +3,9 @@
 # 7.6 MB HEVC source; the web copy lives in media/intern-demo.mp4 (193 KB)
 intern-demo.mov
 
+# 11 MB HEVC source; the web copy lives in media/memento-demo.mp4 (771 KB)
+Memento demo 0508.mov
+
 # superseded by the inline SVG city art and assets/site.css
 landmarks/
 assets/index-CReap02t.css
