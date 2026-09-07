@@ -1760,3 +1760,14 @@ a.tile-bar:hover .tile-open { color: var(--accent); }
   .panel { page-break-inside: avoid; height: auto; padding: 18px 0; }
   .js .panel-inner { opacity: 1; transform: none; grid-template-columns: 1fr; }
 }
+
+/* Shared employer, with the two ventures nested beneath it. */
+.org-group { font-size: clamp(28px, 2.6vw, 46px); }
+.venture-name { display: block; margin-top: 10px; font-size: 0.7em; color: var(--muted); letter-spacing: -0.02em; }
+.ov-company-head { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 16px; align-items: baseline; padding: 14px 14px 8px 12px; }
+.ov-company-roles { margin-left: 12px; padding-left: 10px; border-left: 1px solid var(--line); }
+.ov-company-roles .ov-main strong { font-size: 15px; }
+@media (max-width: 860px) {
+  .ov-company-head { grid-template-columns: minmax(0, 1fr); gap: 6px; padding-left: 10px; }
+  .ov-company-roles { margin-left: 10px; }
+}

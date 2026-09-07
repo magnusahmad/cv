@@ -122,6 +122,10 @@
   }
 
   .org { font-size: 11pt; font-weight: 600; letter-spacing: -0.005em; color: var(--ink); }
+  .company-note { margin: 1pt 0 5pt; font-size: 9pt; color: var(--muted); }
+  .company-roles { border-left: 0.75pt solid var(--rule); padding-left: 10pt; }
+  .venture { font-size: 10pt; font-weight: 600; color: var(--ink); }
+
   .when { font-size: 9pt; font-weight: 500; color: var(--ink); white-space: nowrap; }
 
   .role-line {
@@ -163,25 +167,6 @@
 
   ul.points b { color: var(--ink); font-weight: 600; }
 
-  .metrics {
-    margin-top: 3.5pt;
-    padding-top: 3pt;
-    border-top: 0.5pt dotted var(--rule);
-    font-size: 9pt;
-    color: var(--muted);
-  }
-
-  .metrics b { color: var(--ink); font-weight: 600; }
-  .metrics i { font-style: normal; color: var(--rule); padding: 0 4pt; }
-
-  /* ---------- links block ---------- */
-  .links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 5pt 18pt; }
-
-  .links div { display: grid; grid-template-columns: auto 1fr; gap: 7pt; align-items: baseline; }
-  .links strong { font-size: 9.8pt; font-weight: 600; color: var(--ink); white-space: nowrap; }
-  .links span { font-size: 9.2pt; color: var(--muted); }
-  .links a { border-bottom: 0.5pt solid var(--rule); }
-
   .foot {
     margin-top: 12pt;
     padding-top: 5pt;
@@ -221,13 +206,12 @@
     body { font-size: 9.6pt; }
     .bar { display: none; }
     h2 { break-after: avoid; page-break-after: avoid; }
-    .contact a, .links a { border-bottom: 0; }
+    .contact a { border-bottom: 0; }
   }
 
   @media screen and (max-width: 800px) {
     body { padding: 12px 0 32px; }
     .page, .bar { width: auto; max-width: 100%; padding-left: 18px; padding-right: 18px; }
-    .links { grid-template-columns: 1fr; }
     .entry-head, .role-line { grid-template-columns: 1fr; gap: 0; }
     .when, .where { white-space: normal; }
   }
@@ -258,54 +242,38 @@
     Repeat founder, full-stack product leader and operator with nine years across
     <b>agentic AI systems</b>, <b>ML supply chain at Amazon</b>, <b>verifiable compute</b> and
     <b>privacy-preserving identity</b>. Zero-to-one product strategy, go-to-market and
-    technically ambitious products, built across Manila, Oxford, London, Berlin and Hong Kong.
+    technically ambitious products.
   </p>
 
   <!-- ============================ EXPERIENCE ============================ -->
   <section>
     <h2>Experience</h2>
 
+    <div class="entry company-group" role="group" aria-labelledby="schelling-point-labs">
+      <div class="entry-head"><h3 class="org" id="schelling-point-labs">Schelling Point Labs</h3><span class="when">Jun 2024 — Jun 2026</span></div>
+      <p class="company-note">Parent company of Blocksense and Agent Harbor</p>
+      <div class="company-roles">
     <div class="entry">
-      <div class="entry-head"><span class="org">Memento</span><span class="when">Jun 2026 — Present</span></div>
-      <div class="role-line"><span class="role">Founder · AI-powered adaptive learning platform</span><span class="where">Hong Kong</span></div>
-      <ul class="points">
-        <li>Built a science-backed AI learning platform that <b>maps mastery across a personal knowledge graph</b> and turns errors into adaptive practice.</li>
-        <li>A browser companion captures texts from any page, branches into contextual chat, and builds a durable spaced-repetition library.</li>
-      </ul>
-      <p class="metrics"><b>28</b> skill dimensions in the mastery graph<i>·</i><b>Live</b> — in beta with educators</p>
-    </div>
-
-    <div class="entry">
-      <div class="entry-head"><span class="org">Intern</span><span class="when">May 2026 — Present</span></div>
-      <div class="role-line"><span class="role">Creator · Open-source AI teammate</span><span class="where">Hong Kong</span></div>
-      <ul class="points">
-        <li>A <b>self-onboarding teammate</b> that researches a business, connects to its tools and builds a living company knowledge base.</li>
-        <li>One terminal flow discovers only the services a company actually uses, authenticates securely, then hands off to Telegram.</li>
-        <li>The specialised profile benchmarked <b>4× faster</b> than vanilla Hermes with <b>zero approval interruptions</b> versus 37.</li>
-      </ul>
-      <p class="metrics"><b>~5 min</b> from install to a context-aware teammate<i>·</i><b>4×</b> faster task completion</p>
-    </div>
-
-    <div class="entry">
-      <div class="entry-head"><span class="org">Agent Harbor</span><span class="when">Jul 2025 — Jun 2026</span></div>
+      <div class="entry-head"><span class="venture">Agent Harbor</span><span class="when">Jul 2025 — Jun 2026</span></div>
       <div class="role-line"><span class="role">CEO &amp; Co-founder · Reliable long-horizon autonomous work</span><span class="where">Hong Kong</span></div>
       <ul class="points">
-        <li>Co-founded after a strategic pivot from Blocksense — a coding-agent platform for <b>reliable, long-horizon autonomous work</b>.</li>
+        <li>Co-founded after a strategic pivot from Blocksense. A coding-agent platform for long-horizon parallel agent work.</li>
         <li>Shipped a <b>copy-on-write filesystem 10× faster than git worktrees</b>, with granular sandboxing, instant rollback and anti-halting recovery.</li>
         <li>Accepted into the <b>Zerobase accelerator</b>; reached the <b>TOKEN2049 Nexus finals</b> from a field of 500+ teams.</li>
       </ul>
-      <p class="metrics"><b>10×</b> faster than git worktrees<i>·</i><b>4</b> agent runtimes orchestrated locally</p>
     </div>
 
     <div class="entry">
-      <div class="entry-head"><span class="org">Blocksense</span><span class="when">Jun 2024 — Jul 2025</span></div>
+      <div class="entry-head"><span class="venture">Blocksense</span><span class="when">Jun 2024 — Jul 2025</span></div>
       <div class="role-line"><span class="role">Founding Team · Product &amp; Go-to-market</span><span class="where">Berlin</span></div>
       <ul class="points">
-        <li>Set <b>zero-to-one product strategy</b> for a distributed network for verifiable data and computation, backed by <b>a16z crypto</b>.</li>
+        <li>Set zero-to-one product strategy for a distributed network of autonomous services, backed by a16z crypto.</li>
         <li>Onboarded the company's <b>first customers and partners</b> off a self-built pipeline of 100+ projects.</li>
         <li>Represented the company at TOKEN2049, Consensus Hong Kong, ETHDenver and Devcon.</li>
       </ul>
-      <p class="metrics"><b>70+</b> partner networks<i>·</i><b>80K</b> community<i>·</i><b>$3M</b> grants won</p>
+    </div>
+
+      </div>
     </div>
 
     <div class="entry">
@@ -316,12 +284,11 @@
         <li>Owned greenfield bets spanning billing, analytics, Compliance-as-a-Service, and an edge-based private LLM assistant.</li>
         <li>Ran three experimental SWAT teams through customer discovery and go-to-market — thousands of qualified visits and 100+ letters of intent.</li>
       </ul>
-      <p class="metrics"><b>1M+</b> people reached<i>·</i><b>100+</b> letters of intent<i>·</i><b>3</b> SWAT teams run end to end</p>
     </div>
 
     <div class="entry">
       <div class="entry-head"><span class="org">Amazon</span><span class="when">Sep 2017 — Sep 2021</span></div>
-      <div class="role-line"><span class="role">Product Manager — Retail, then Supply Chain</span><span class="where">London</span></div>
+      <div class="role-line"><span class="role">Product Manager — Retain &amp; Supply Chain</span><span class="where">London</span></div>
       <div class="stints">
         <div><span>Product Manager · Supply Chain</span><span>Jul 2020 — Sep 2021</span></div>
         <div><span>Product Manager · Retail</span><span>Sep 2017 — Jul 2020</span></div>
@@ -331,7 +298,6 @@
         <li>Led a supply-chain algorithm upgrade that recovered roughly <b>3M suppressed products</b> and unlocked <b>€20M+ in annualised revenue</b>.</li>
         <li>Ran EU-wide A/B tests over eight-digit weekly shipment volumes — <b>apparel delivery 30% faster</b> and warehouse coverage doubled in five markets.</li>
       </ul>
-      <p class="metrics"><b>€50M+</b> annualised impact<i>·</i><b>80K</b> delayed parcels prioritised before Christmas<i>·</i><b>1,000+</b> hours a year removed by automation</p>
     </div>
 
   </section>
@@ -345,7 +311,7 @@
       <div class="role-line"><span class="role">Masters in Management</span><span class="where">London</span></div>
       <ul class="points">
         <li>Consulted on strategic growth for <b>Change Please</b>, a UK social enterprise putting people out of homelessness through coffee.</li>
-        <li>Nominated for the <b>Outstanding Teamwork Award</b> across the cohort.</li>
+        <li>Chosen for the Outstanding Teamwork Award across the cohort.</li>
       </ul>
     </div>
 
@@ -354,7 +320,7 @@
       <div class="role-line"><span class="role">BA Archaeology &amp; Anthropology (2:1) · MSc Cognitive &amp; Evolutionary Anthropology</span><span class="where">Oxford</span></div>
       <ul class="points">
         <li><b>First-class dissertation</b> — ethnographic research on migrant identity and how technology is used abroad and at home.</li>
-        <li>MSc thesis: a quantitative study of social status and financial risk aversion, built on research design and statistical analysis.</li>
+        <li>Experimental study of self-perceived social status and financial risk aversion.</li>
       </ul>
     </div>
 
@@ -364,20 +330,8 @@
     </div>
   </section>
 
-  <!-- ============================ SELECTED WORK ============================ -->
-  <section>
-    <h2>Selected work</h2>
-    <div class="links">
-      <div><strong>Memento</strong><span>Adaptive learning · <a href="https://mementoapp.xyz/">mementoapp.xyz</a></span></div>
-      <div><strong>Intern</strong><span>Open-source AI teammate · <a href="https://github.com/magnusahmad/intern/tree/main">github.com/magnusahmad/intern</a></span></div>
-      <div><strong>Agent Harbor</strong><span>Autonomous coding · <a href="https://get.agent-harbor.com/">get.agent-harbor.com</a></span></div>
-      <div><strong>Blocksense</strong><span>Verifiable compute · <a href="https://www.blocksense.network/">blocksense.network</a></span></div>
-    </div>
-  </section>
-
   <p class="foot">
     <span>Interactive version: magnusahmad.github.io/cv</span>
-    <span>References available on request</span>
   </p>
 
 </main>
