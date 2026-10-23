@@ -19,6 +19,7 @@ magnus-ahmad-cv.pdf   two-page A4 CV, generated from cv.html
 tools/make-pdf.mjs    regenerates the PDF via the Chrome DevTools Protocol
 assets/site.css       the whole design system
 assets/site.js        scroll chronology, rail, view switching
+assets/sentry-demo.js  AO1’s compact interactive Sentry layers
 brands/               logos used in the chapter chips and work tiles
 media/                product demo clips played inside the venture tiles
 magnus-ahmad.png      portrait (also the favicon)
@@ -28,7 +29,7 @@ og.png                social share image
 ## Editing content
 
 The site opens on the Overview; picking any row drops you into the Timeline at
-that chapter. The timeline is a continuously scrolling ribbon of 10 chapters — neighbours peek
+that chapter. The timeline is a continuously scrolling ribbon of 11 chapters — neighbours peek
 in on either side and the width of one chapter is the `--pw` token in the CSS.
 Each chapter is one `<article class="panel">` in `index.html`. The script reads
 everything it needs from that element's data attributes, so adding, reordering
@@ -48,6 +49,14 @@ newest-first; the timeline runs oldest-first.
 
 The overview rows and the header/hero buttons jump into the timeline via
 `data-goto="<panel index>"`.
+
+AO1 is the latest experience (July 2026–Present). Its wordmark is copied from
+the local AO1 project’s `public/logo-mark.png`; the compact Sentry demo adapts that
+project’s `HowStack.tsx` into dependency-free HTML, CSS and JavaScript. It cycles
+through the four steps while visible, pauses on selection, and respects reduced
+motion. The building boundary and each layer also select their matching step.
+Copy sources: [corporate secretarial case study](https://ao1.consulting/case-studies/corporate-secretarial)
+and [Sentry](https://ao1.consulting/sentry).
 
 ## Regenerating the PDF
 
