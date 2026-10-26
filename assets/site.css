@@ -732,20 +732,15 @@ a.chip:hover {
   transition: color 0.6s;
 }
 
-.contact-lede {
-  font-size: clamp(16px, 1.25vw, 19px);
-  color: var(--muted);
-  max-width: 46ch;
-  margin-bottom: 30px;
-  line-height: 1.62;
-}
-
 .contact-links {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  align-items: stretch;
+  width: min(320px, 100%);
+  margin: 30px auto 0;
   gap: 10px;
 }
+.contact-links a { justify-content: center; }
 
 /* =========================================================
    Geo caption
@@ -1878,3 +1873,32 @@ a.tile-bar:hover .tile-open { color: var(--accent); }
   .ov-company-head { grid-template-columns: minmax(0, 1fr); gap: 6px; padding-left: 10px; }
   .ov-company-roles { margin-left: 10px; }
 }
+
+/* Selected work uses the current Memento paper palette and AO1’s live layers. */
+.ov-work .work-media { height: 190px; }
+.work-sentry .work-foot { margin-top: auto; }
+.work-chip img.ao1-work-logo { width: 30px; height: auto; filter: invert(1); }
+.sentry-demo-compact { height: 100%; gap: 10px; padding: 10px 10px 25px; }
+.sentry-demo-compact .sentry-building { --slab: 27cqw; min-height: 125px; height: 145px; }
+.sentry-demo-compact .sentry-boundary { font-size: 6px; }
+.sentry-demo-compact .sentry-boundary span { top: 7px; left: 7px; right: 7px; }
+.sentry-demo-compact .sentry-step { padding-block: 8px; font-size: 10px; gap: 5px; }
+.sentry-demo-compact .sentry-number { font-size: 6px; padding-top: 2px; }
+.sentry-demo-compact .sentry-step .sentry-caption { display: none; }
+.sentry-demo-compact .sentry-toggle { font-size: 8px; right: 10px; bottom: 6px; }
+.memento-preview { container-type: inline-size; padding: 13px 16px 0; color: #1c1815; background: #fffaf2; font-family: var(--sans); }
+.memento-preview-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.memento-preview-head > span:first-child { font: 500 clamp(14px, 5.4cqw, 20px)/1.1 Georgia, serif; letter-spacing: -.035em; }
+.memento-practise { flex-shrink: 0; padding: 6px 7px; background: #c13a63; color: #fff; border-radius: 6px; box-shadow: 0 2px 0 #971544; font-size: clamp(7px, 2.5cqw, 9px); font-weight: 600; }
+.memento-goal { margin-top: 8px; padding-top: 7px; font-size: 8px; line-height: 1.2; border-top: 1px solid #ded2bd; }
+.memento-kicker { text-transform: uppercase; font-size: clamp(7px, 2.5cqw, 9px); font-weight: 600; color: #6e6559; }
+.memento-goal > div { display: flex; gap: 6px; align-items: baseline; }
+.memento-goal strong { font: 500 clamp(22px, 8cqw, 30px)/1.2 Georgia, serif; }
+.memento-goal div > span { font-size: clamp(7px, 2.6cqw, 9px); color: #6e6559; }
+.memento-goal-bars { display: grid !important; grid-template-columns: repeat(10, 1fr); gap: 3px !important; margin-top: 4px; }
+.memento-goal-bars i { height: 9px; border-radius: 2px; background: #445e7d; }
+.memento-goal-bars i:nth-last-child(-n+2) { background: #eadfcb; }
+.memento-activity { display: flex; align-items: baseline; justify-content: space-between; margin-top: 8px; font-size: clamp(8px, 2.7cqw, 11px); }
+.memento-activity > span { font-size: clamp(6px, 2cqw, 9px); color: #6e6559; }
+.memento-activity strong { color: #1c1815; font-family: Georgia, serif; font-size: clamp(12px, 4cqw, 16px); }
+.memento-preview svg { width: 100%; height: 50px; margin-top: 4px; }

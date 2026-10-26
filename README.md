@@ -87,13 +87,15 @@ Two gotchas that cost real time, both worth remembering if `cv.html` is edited:
 - International School of Manila is listed in the overview but has no timeline
   chapter; its overview row is `.ov-row.static`, so it doesn't jump anywhere.
 - Logos in the chapter chips and the tile title bars are links to each site.
-- The Blocksense, Agent Harbor and Intern tiles play `media/*.mp4` inline (muted,
-  looped); the Memento tile is a CSS rebuild of the product's own "Student
-  overview" dashboard, scaled to the tile with container-query units — it keeps
-  its light palette rather than inheriting the site's dark tokens. It has no
-  fixed height: everything inside is sized in `em` off a `cqw` base, so the box
-  fits its content exactly at any tile width, and above 860px the base also
-  clamps to `vh` so it never outgrows a short viewport.
+- Selected work runs AO1 · Sentry, Memento, Agent Harbor, then Blocksense.
+  Sentry shares its interactive layers with the AO1 timeline entry; each instance
+  animates independently while visible and respects reduced motion.
+- Memento’s selected-work preview follows its current cream paper dashboard:
+  serif greeting, pink practice button, blue weekly-goal bars and activity chart.
+  Its source design is the Memento project’s `learner-paper.css` and
+  `home-demos/student.html`. The timeline keeps its product demo video.
+- The Blocksense, Agent Harbor, Intern and Memento timeline tiles play
+  `media/*.mp4` inline (muted, looped).
 - Intern and Memento carry a `.tile-foot` link out to their public demo.
   They carry `data-src` rather than `src`: an IntersectionObserver assigns the
   source and starts playback only once the tile scrolls into view, and pauses it
